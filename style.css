@@ -1,0 +1,237 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    line-height: 1.6;
+}
+
+
+/* Navigation */
+
+.navbar {
+    background-color: #123c4a !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Hero section */
+
+.hero {
+    background-color: #e8f4f5;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    color: #123c4a;
+}
+
+
+/* Cards */
+
+.card {
+    height: 100%;
+}
+
+.card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+
+/* Buttons */
+
+.btn-primary {
+    background-color: #19747e;
+    border-color: #19747e;
+}
+
+.btn-primary:hover {
+    background-color: #145e65;
+    border-color: #145e65;
+}
+
+
+/* Forms */
+
+.form-section {
+    max-width: 800px;
+}
+
+.error-message {
+    color: #b00020;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+
+/* Footer */
+
+footer {
+    background-color: #123c4a;
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+
+/* Responsive images */
+
+img {
+    max-width: 100%;
+}
+
+
+/* Mobile improvements */
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 50px 15px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .card img {
+        height: 200px;
+    }
+
+}
+
+/* =====================================
+   SMART ROOM FINDER - TASK 10.3HD
+   ===================================== */
+
+.smart-room-intro {
+    background-color: #e8f4f5;
+    border-radius: 12px;
+    padding: 32px;
+    border: 1px solid #c9e1e4;
+}
+
+.room-finder-section,
+.room-result-section {
+    scroll-margin-top: 20px;
+}
+
+.room-finder-card {
+    background-color: white;
+    border: 1px solid #d9dee2;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.room-finder-label {
+    color: #19747e;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.85rem;
+}
+
+.voice-status {
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+.match-badge {
+    display: inline-block;
+    background-color: #e8f4f5;
+    color: #123c4a;
+    border: 1px solid #9fcbd0;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-weight: bold;
+}
+
+.room-result-price,
+.room-price {
+    color: #123c4a;
+    font-weight: bold;
+}
+
+.room-result-price {
+    font-size: 1.15rem;
+}
+
+.recommendation-image {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+}
+
+.recommendation-reasons {
+    padding-left: 1.25rem;
+}
+
+.recommendation-reasons li {
+    margin-bottom: 0.45rem;
+}
+
+.btn-outline-primary {
+    color: #19747e;
+    border-color: #19747e;
+}
+
+.btn-outline-primary:hover {
+    background-color: #19747e;
+    border-color: #19747e;
+}
+
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+a:focus-visible {
+    outline: 3px solid #212529;
+    outline-offset: 3px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* Room Finder mobile improvements */
+
+@media (max-width: 768px) {
+
+    .smart-room-intro,
+    .room-finder-card {
+        padding: 22px;
+    }
+
+    .match-badge {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Respect users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}

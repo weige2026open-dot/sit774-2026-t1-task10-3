@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms | Coastal Haven Hotel</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Coastal Haven Hotel
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNav"
+                aria-controls="mainNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="rooms.html">Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="facilities.html">Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container my-5">
+
+    <h1 class="text-center mb-3">Coastal Haven Hotel Rooms</h1>
+    <p class="text-center mb-5">
+        Choose from our comfortable range of rooms or use the Smart Room Finder
+        for a personalised recommendation.
+    </p>
+
+    <!-- =====================================
+         SMART INTERACTIVE ROOM FINDER
+         Task 10.3HD feature implementation
+         ===================================== -->
+    <section class="smart-room-intro mb-5" aria-labelledby="roomFinderIntroTitle">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <p class="room-finder-label mb-2">Smart room recommendation</p>
+                <h2 id="roomFinderIntroTitle">Find Your Perfect Room</h2>
+                <p class="mb-0">
+                    Tell us about your stay and the Room Finder will compare your
+                    preferences with our rooms, calculate a match score and explain
+                    why a room is recommended.
+                </p>
+            </div>
+
+            <div class="col-lg-4 text-lg-end">
+                <button
+                    id="startRoomFinder"
+                    class="btn btn-primary btn-lg"
+                    type="button"
+                    aria-controls="roomFinderSection"
+                    aria-expanded="false">
+                    Start Room Finder
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section
+        id="roomFinderSection"
+        class="room-finder-section mb-5"
+        aria-labelledby="roomFinderTitle"
+        hidden>
+
+        <div class="room-finder-card">
+            <div class="mb-4">
+                <p class="room-finder-label mb-1">Step 1 of 2</p>
+                <h2 id="roomFinderTitle">Smart Room Finder</h2>
+                <p class="mb-0">
+                    Select your preferences below. Voice assistance is optional.
+                </p>
+            </div>
+
+            <form id="roomFinderForm" novalidate>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label for="guestCount" class="form-label">
+                            Number of guests
+                        </label>
+                        <select id="guestCount" class="form-select" required>
+                            <option value="1">1 guest</option>
+                            <option value="2" selected>2 guests</option>
+                            <option value="3">3 guests</option>
+                            <option value="4">4 guests</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="roomBudget" class="form-label">
+                            Maximum budget per night (AUD)
+                        </label>
+                        <input
+                            id="roomBudget"
+                            class="form-control"
+                            type="number"
+                            min="100"
+                            max="1000"
+                            step="10"
+                            value="250"
+                            inputmode="numeric"
+                            required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="stayPurpose" class="form-label">
+                            Purpose of stay
+                        </label>
+                        <select id="stayPurpose" class="form-select">
+                            <option value="holiday">Holiday</option>
+                            <option value="business">Business trip</option>
+                            <option value="romantic" selected>Romantic getaway</option>
+                            <option value="family">Family stay</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="preferredFeature" class="form-label">
+                            Preferred room feature
+                        </label>
+                        <select id="preferredFeature" class="form-select">
+                            <option value="none">No preference</option>
+                            <option value="ocean view" selected>Ocean view</option>
+                            <option value="queen bed">Queen bed</option>
+                            <option value="larger room">Larger room</option>
+                            <option value="multiple beds">Multiple beds</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="accessibilityRequirement" class="form-label">
+                            Accessibility requirements
+                        </label>
+                        <select id="accessibilityRequirement" class="form-select">
+                            <option value="none" selected>None</option>
+                            <option value="required">Step-free accessible room required</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div
+                    id="roomFinderError"
+                    class="error-message mt-3"
+                    role="alert"
+                    aria-live="assertive">
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+                    <button
+                        id="voicePreferences"
+                        class="btn btn-outline-primary"
+                        type="button"
+                        aria-describedby="voiceStatus">
+                        🎤 Speak My Preferences
+                    </button>
+
+                    <button
+                        id="findRoomButton"
+                        class="btn btn-primary"
+                        type="submit">
+                        Find My Room
+                    </button>
+                </div>
+
+                <p
+                    id="voiceStatus"
+                    class="voice-status mt-3 mb-0"
+                    aria-live="polite">
+                    Voice assistance is optional. You can always use the form controls.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Recommendation is inserted here by JavaScript -->
+    <section
+        id="roomResultSection"
+        class="room-result-section mb-5"
+        aria-labelledby="roomResultTitle"
+        aria-live="polite"
+        hidden>
+
+        <div class="room-finder-card">
+            <p class="room-finder-label mb-1">Step 2 of 2</p>
+            <h2 id="roomResultTitle">Your Recommended Room</h2>
+
+            <div class="row align-items-center g-4 mt-1">
+                <div class="col-lg-5">
+                    <img
+                        id="recommendedRoomImage"
+                        src="images/room2.jpg"
+                        alt=""
+                        class="img-fluid rounded recommendation-image">
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                        <h3 id="recommendedRoomName" class="mb-0"></h3>
+                        <span id="recommendedRoomScore" class="match-badge"></span>
+                    </div>
+
+                    <p id="recommendedRoomPrice" class="room-result-price"></p>
+                    <p id="recommendedRoomDescription"></p>
+
+                    <h4 class="h6">Why this room matches:</h4>
+                    <ul id="recommendationReasons" class="recommendation-reasons"></ul>
+
+                    <p
+                        id="recommendationNote"
+                        class="small text-muted"
+                        hidden>
+                    </p>
+
+                    <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+                        <button
+                            id="viewRecommendedRoom"
+                            class="btn btn-primary"
+                            type="button">
+                            View Room Details
+                        </button>
+
+                        <button
+                            id="tryAgainButton"
+                            class="btn btn-outline-secondary"
+                            type="button">
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================
+         EXISTING ROOM CARDS
+         ===================================== -->
+    <section aria-labelledby="ourRoomsTitle">
+        <h2 id="ourRoomsTitle" class="text-center mb-4">Our Rooms</h2>
+
+        <div class="row g-4">
+
+            <!-- Room 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <img
+                        src="images/room1.jpg"
+                        class="card-img-top"
+                        alt="Standard room at Coastal Haven Hotel">
+
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title h4">Standard Room</h3>
+                        <p class="card-text">
+                            A comfortable room suitable for individual travellers and couples.
+                        </p>
+                        <p class="room-price">From $199 / night</p>
+                        <button
+                            class="btn btn-primary mt-auto"
+                            data-bs-toggle="modal"
+                            data-bs-target="#standardModal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <img
+                        src="images/room2.jpg"
+                        class="card-img-top"
+                        alt="Deluxe ocean view room">
+
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title h4">Deluxe Ocean Room</h3>
+                        <p class="card-text">
+                            Enjoy extra comfort and relaxing coastal views.
+                        </p>
+                        <p class="room-price">From $229 / night</p>
+                        <button
+                            class="btn btn-primary mt-auto"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deluxeModal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Room 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <img
+                        src="images/room3.jpg"
+                        class="card-img-top"
+                        alt="Family room at Coastal Haven Hotel">
+
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="card-title h4">Family Room</h3>
+                        <p class="card-text">
+                            A spacious room designed for families and small groups.
+                        </p>
+                        <p class="room-price">From $299 / night</p>
+                        <button
+                            class="btn btn-primary mt-auto"
+                            data-bs-toggle="modal"
+                            data-bs-target="#familyModal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<!-- Standard Room Modal -->
+<div class="modal fade" id="standardModal" tabindex="-1" aria-labelledby="standardModalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="standardModalTitle">Standard Room</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Includes a comfortable queen bed, private bathroom, Wi-Fi and television.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Deluxe Modal -->
+<div class="modal fade" id="deluxeModal" tabindex="-1" aria-labelledby="deluxeModalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="deluxeModalTitle">Deluxe Ocean Room</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Includes a queen bed, private bathroom, Wi-Fi, television and coastal views.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Family Modal -->
+<div class="modal fade" id="familyModal" tabindex="-1" aria-labelledby="familyModalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title fs-5" id="familyModalTitle">Family Room</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Includes multiple beds, a private bathroom, Wi-Fi and additional space for families.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center py-4 mt-5">
+    <p class="mb-1">&copy; 2026 Coastal Haven Hotel</p>
+    <p class="mb-1">Last updated: September 2026</p>
+    <p class="mb-0">
+        Email:
+        <a href="mailto:info@coastalhavenhotel.com">info@coastalhavenhotel.com</a>
+    </p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
